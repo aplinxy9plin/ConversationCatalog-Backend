@@ -3,8 +3,8 @@ let MongoClient = require("mongodb").MongoClient
 let ObjectId = require("mongodb").ObjectID
 let app = express()
 let port = 1337 || process.env.PORT
-let db_name = "conv-catalog"
-let url = "mongodb://127.0.0.1:27017"
+let db_name = "heroku_7k2r28vz"
+let url = "mongodb://admin:q2w3e4r5@ds263917.mlab.com:63917/heroku_7k2r28vz"
 let bodyParser = require("body-parser")
 
 app.use(function(req, res, next) {
