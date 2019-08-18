@@ -42,7 +42,31 @@ app.post("/add_conv", (req, res) => {
     MongoClient.connect(url, (err, db) => {
         if(err) throw err;
         var dbo = db.db(db_name)
-        dbo.collection("conv").insertOne(req.body, (err) => {
+        var json = req.body;
+        json.status = 1;
+        dbo.collection("conv").insertOne(json, (err) => {
+            if(err) throw err;
+            res.json({type: "ok"})
+        })
+    })
+})
+
+app.get("/good", (req, res) => {
+    MongoClient.connect(url, (err, db) => {
+        if(err) throw err;
+        var dbo = db.db(db_name)
+        dbo.collection("conv").updateOne({_id: ObjectId(req.query.id)}, {$set: {status: 2}}, (err) => {
+            if(err) throw err;
+            res.json({type: "ok"})
+        })
+    })
+})
+
+app.get("/good", (req, res) => {
+    MongoClient.connect(url, (err, db) => {
+        if(err) throw err;
+        var dbo = db.db(db_name)
+        dbo.collection("conv").remove({_id: ObjectId(req.query.id)}, (err) => {
             if(err) throw err;
             res.json({type: "ok"})
         })
