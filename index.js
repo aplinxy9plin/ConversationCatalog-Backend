@@ -62,7 +62,7 @@ app.get("/good", (req, res) => {
     })
 })
 
-app.get("/good", (req, res) => {
+app.get("/remove", (req, res) => {
     MongoClient.connect(url, (err, db) => {
         if(err) throw err;
         var dbo = db.db(db_name)
